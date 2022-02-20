@@ -3,3 +3,11 @@
   service:
     name: filebeat
     state: restarted
+  when: ansible_virtualization_type != 'docker'
+- name: start Filebeat
+  command:
+    cmd:  su -l kibana -s /bin/bash -c "/usr/share/kibana/bin/kibana &"
+    #cmd: "/usr/share/kibana/bin/kibana --allow-root &"
+    #cmd: 'nohup /usr/share/kibana/bin/kibana --allow-root'
+    creates: /tmp/.filebeat.lock
+  when: ansible_virtualization_type == 'docker'

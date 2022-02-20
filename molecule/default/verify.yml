@@ -1,0 +1,13 @@
+---
+- name: Check is Filebeat is started
+  hosts: filebeat-instance
+  gather_facts: true
+  tasks:
+  - name: Get status code Filebeat
+    shell:  'ps aux | grep [f]ilebeat | wc -l'
+    register: get_status_code_filebeat
+  - name: Check Filebeat status code
+    assert:
+      that: get_status_code_filebeat.stdout == '1'
+      fail_msg: "'get_status_code_filebeat' in not equal 1"
+      success_msg: "'get_status_code_filebeat' in not equal 1"
