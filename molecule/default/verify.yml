@@ -9,5 +9,5 @@
   - name: Check Filebeat status code
     assert:
       that: get_status_code_filebeat.stdout == '1'
-      fail_msg: "'get_status_code_filebeat' in not equal 1"
-      success_msg: "'get_status_code_filebeat' in not equal 1"
+      fail_msg: "'get_status_code_filebeat' is not equal 1"
+      success_msg: "'get_status_code_filebeat' is equal 1"
